@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Atakule Dent Ağız ve Diş Sağlığı Polikliniği Web Sitesi
 
-## Getting Started
+Atakule Dent için Next.js App Router, Tailwind CSS, TypeScript ve Framer Motion kullanılarak tasarlanmış, modern, koyu temalı ve premium görünümlü bir web sitesidir.
 
-First, run the development server:
+## Özellikler
+- **Next.js App Router**: Yüksek performanslı ve SEO uyumlu yönlendirme.
+- **Koyu Premium Tasarım**: Referans kalitesinde gece laciverti, şampanya altını ve klinik turkuazı renkleri ile lüks bir duruş.
+- **Tamamen Responsive**: Mobil, tablet ve masaüstü ekran boyutları ile tam uyum (320px genişliğe kadar test edilmiştir).
+- **Görsel Optimizasyon**: WebP formatında optimize edilmiş, lazy load destekli ve layout shift yaratmayan görsel yerleşimleri.
+- **WhatsApp Randevu Entegrasyonu**: Randevu ve bilgi talep formları doğrudan kullanıcının girdiği detayları özel bir WhatsApp mesajına dönüştürerek doğrudan kliniğe ulaştırır.
+- **SEO ve JSON-LD**: Dentist/MedicalClinic, Breadcrumbs ve sosyal profil şemaları eklenmiştir. Dinamik `sitemap.xml` ve `robots.txt` entegrasyonu mevcuttur.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Teknolojik Altyapı
+- Next.js (v16)
+- React (v19)
+- Tailwind CSS (v4)
+- TypeScript
+- Framer Motion
+- Lucide React (Özelleştirilmiş SVG Ikonları)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Kurulum ve Çalıştırma
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları uygulayın:
 
-## Learn More
+1. **Bağımlılıkları Yükleyin:**
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Geliştirme Sunucusunu Başlatın:**
+   ```bash
+   npm run dev
+   ```
+   Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresine giderek siteyi görüntüleyebilirsiniz.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Production Build Alın ve Test Edin:**
+   ```bash
+   npm run build
+   npm run start
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Veri Güncelleme Rehberi
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sitedeki tüm içerikler, bileşenlerin içinde dağınık yazılmak yerine `src/data/` klasöründeki merkezi TypeScript dosyalarından yönetilir.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Klinik Bilgilerini ve İletişim Detaylarını Değiştirme
+Telefon numarası, adres, WhatsApp randevu linki gibi ayarları değiştirmek için:
+- Dosya: [siteSettings.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/siteSettings.ts)
+- Bu dosyada yer alan `siteSettings` objesini düzenlemeniz yeterlidir. Değişiklikler sitedeki tüm iletişim alanlarında ve SEO şemalarında anında güncellenir.
+
+### 2. Doktor Bilgisi Ekleme veya Düzenleme
+Hekim listesini, isimleri, biyografileri veya Instagram hesaplarını yönetmek için:
+- Dosya: [doctors.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/doctors.ts)
+- `doctors` dizisine yeni bir hekim objesi ekleyebilir ya da mevcut hekimleri düzenleyebilirsiniz. Her bir hekim için dinamik biyografi sayfası otomatik olarak oluşturulur (`/hekimlerimiz/[slug]`).
+
+### 3. Tedavi Ekleme veya Çıkarma
+Kliniğin sunduğu tedavileri ve bunlara tıklanıldığında açılacak WhatsApp mesaj şablonlarını yönetmek için:
+- Dosya: [treatments.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/treatments.ts)
+- `treatments` dizisine yeni bir tedavi ekleyebilir veya çıkarabilirsiniz. Tedaviye özel detay sayfaları otomatik olarak oluşturulur (`/tedaviler/[slug]`).
+
+---
+
+## Fotoğrafları Değiştirme Rehberi
+
+Görseller `/public` klasöründe yer alır. Site performansını en üst düzeyde tutmak için görsellerinizi WebP formatında optimize ederek aşağıdaki yollarla değiştirin:
+
+- **Atakule Gece Manzaralı Hero Visual (Desktop):** `/public/images/atakule-hero.webp`
+- **Atakule Gece Manzaralı Hero Visual (Mobil):** `/public/images/atakule-hero-mobile.webp`
+- **Atakule Gündüz/Sunset Konum Görseli:** `/public/images/atakule-location.webp`
+- **Klinik Girişi:** `/public/images/clinic-exterior.webp`
+- **Bekleme Odası / Resepsiyon:** `/public/images/clinic-reception.webp`
+- **Tedavi Odası 01:** `/public/images/clinic-room-01.webp`
+- **Tedavi Odası 02 (Sterilizasyon):** `/public/images/clinic-room-02.webp`
+- **Dt. Özgür Önder Portresi:** `/public/doctors/ozgur-onder.webp`
+- **Dt. İrem Önder Portresi:** `/public/doctors/irem-onder.webp`
+- **Vaka Karşılaştırma Önce:** `/public/cases/case-01-before.webp`
+- **Vaka Karşılaştırma Sonra:** `/public/cases/case-01-after.webp`
