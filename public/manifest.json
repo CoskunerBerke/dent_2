@@ -1,0 +1,16 @@
+{
+  "name": "Atakule Dent Ağız ve Diş Sağlığı Polikliniği",
+  "short_name": "Atakule Dent",
+  "description": "Atakule'nin yanı başında estetik ve konforlu ağız ve diş sağlığı hizmetleri.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111F",
+  "theme_color": "#D7B56D",
+  "icons": [
+    {
+      "src": "/brand/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
