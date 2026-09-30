@@ -76,11 +76,13 @@ No environment variables are required.
 
 | What | Where |
 | --- | --- |
-| Clinic info, phones, WhatsApp links, address, maps, SEO defaults | `src/data/siteSettings.ts` — changes apply to every contact block and the JSON-LD |
+| Clinic info, phones, WhatsApp links, address, maps, SEO defaults | `src/data/siteSettings.ts` |
 | Dentists (name, title, bio, Instagram) — a profile page is generated per entry | `src/data/doctors.ts` |
 | Treatments and their WhatsApp message templates — a detail page is generated per entry | `src/data/treatments.ts` |
 | Before/after cases and disclaimer | `src/data/cases.ts` |
 | Clinic gallery | `src/data/gallery.ts` |
+
+> **Note:** the WhatsApp number is also hard-coded in the appointment forms and the treatment / dentist / case WhatsApp links (`src/app/**`), and the phone number and street address are hard-coded in `src/components/JsonLd.tsx`. Update those as well when the clinic's contact details change.
 
 **Images** live in `public/` — replace them with optimised WebP files at the same paths: hero (`images/atakule-hero.webp`, `images/atakule-hero-mobile.webp`), location (`images/atakule-location.webp`), clinic photos (`images/clinic-*.webp`), dentist portraits (`doctors/`) and case photos (`cases/`).
 
@@ -125,6 +127,7 @@ Ortam değişkeni gerekmez.
 - Hekimler: `src/data/doctors.ts` (her hekim için `/hekimlerimiz/[slug]` sayfası otomatik oluşur)
 - Tedaviler ve WhatsApp şablonları: `src/data/treatments.ts` (her tedavi için `/tedaviler/[slug]` sayfası otomatik oluşur)
 - Vakalar: `src/data/cases.ts` · Galeri: `src/data/gallery.ts`
+- Not: WhatsApp numarası randevu formlarında ve tedavi / hekim / vaka WhatsApp bağlantılarında (`src/app/**`), telefon ve açık adres ise `src/components/JsonLd.tsx` içinde ayrıca sabit yazılıdır; iletişim bilgileri değişirse bunları da güncelleyin.
 - Fotoğraflar: `public/images/`, `public/doctors/`, `public/cases/` altındaki dosyaları aynı adla, WebP formatında değiştirin.
 
 ---
