@@ -1,81 +1,132 @@
-# Atakule Dent Ağız ve Diş Sağlığı Polikliniği Web Sitesi
+# Atakule Dent — Dental Clinic Website
 
-Atakule Dent için Next.js App Router, Tailwind CSS, TypeScript ve Framer Motion kullanılarak tasarlanmış, modern, koyu temalı ve premium görünümlü bir web sitesidir.
+Dark, premium-styled website for **Atakule Dent Ağız ve Diş Sağlığı Polikliniği**, a dental clinic in Çankaya, Ankara, with WhatsApp-based appointment requests.
 
-## Özellikler
-- **Next.js App Router**: Yüksek performanslı ve SEO uyumlu yönlendirme.
-- **Koyu Premium Tasarım**: Referans kalitesinde gece laciverti, şampanya altını ve klinik turkuazı renkleri ile lüks bir duruş.
-- **Tamamen Responsive**: Mobil, tablet ve masaüstü ekran boyutları ile tam uyum (320px genişliğe kadar test edilmiştir).
-- **Görsel Optimizasyon**: WebP formatında optimize edilmiş, lazy load destekli ve layout shift yaratmayan görsel yerleşimleri.
-- **WhatsApp Randevu Entegrasyonu**: Randevu ve bilgi talep formları doğrudan kullanıcının girdiği detayları özel bir WhatsApp mesajına dönüştürerek doğrudan kliniğe ulaştırır.
-- **SEO ve JSON-LD**: Dentist/MedicalClinic, Breadcrumbs ve sosyal profil şemaları eklenmiştir. Dinamik `sitemap.xml` ve `robots.txt` entegrasyonu mevcuttur.
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-0055FF?logo=framer&logoColor=white)
 
-## Teknolojik Altyapı
-- Next.js (v16)
-- React (v19)
-- Tailwind CSS (v4)
-- TypeScript
-- Framer Motion
-- Lucide React (Özelleştirilmiş SVG Ikonları)
+**Live:** https://atakuledent.com
+
+> Client project — designed and developed by Berke Coşkuner for Atakule Dent Ağız ve Diş Sağlığı Polikliniği.
+
+## Overview
+
+A multi-page clinic website for patients looking for a dentist in Çankaya. It presents the clinic, its dentists and treatments, and turns every appointment or information request into a pre-filled WhatsApp message to the clinic — no backend or database needed.
+
+**Design:** night navy, champagne gold and clinical turquoise palette; fully responsive (tested down to 320 px wide); WebP images with lazy loading and no layout shift.
+
+All content is managed from typed data files in `src/data/`.
+
+## Features
+
+- **Home page** — hero, trust bar, about, dentists, treatments, before/after case preview (with a medical disclaimer), "Why Atakule Dent", location with embedded Google Map, and Instagram section
+- **Treatments** (`/tedaviler`, `/tedaviler/[slug]`) — 12 treatments, each with a statically generated detail page and its own WhatsApp message template
+- **Dentists** (`/hekimlerimiz`, `/hekimlerimiz/[slug]`) — statically generated profile pages
+- **Clinic** (`/klinigimiz`) — photo gallery with lightbox · **Case gallery** (`/vaka-galerisi`) — before/after comparisons with disclaimer
+- **Contact** (`/iletisim`) — appointment form (name, phone, treatment, preferred dentist, date, message) with required KVKK consent; on submit it opens WhatsApp with the details pre-filled
+- **Mobile bottom navigation** — one-tap call and WhatsApp appointment
+- **Legal pages** — KVKK, privacy policy, cookie policy
+- **SEO** — `Dentist` JSON-LD (address, geo, opening hours, social profiles), Open Graph metadata, dynamic `sitemap.xml` and `robots.txt`, web app manifest
+
+## Tech stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | Next.js 16 (App Router), React 19, TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion |
+| Icons | Lucide React + custom Instagram SVG |
+| Images | `next/image`, WebP assets |
+
+## Project structure
+
+```text
+src/
+├── app/
+│   ├── page.tsx                 # Home page
+│   ├── tedaviler/[slug]/        # Treatment list + detail pages
+│   ├── hekimlerimiz/[slug]/     # Dentist list + profile pages
+│   ├── klinigimiz/  vaka-galerisi/  hakkimizda/  iletisim/
+│   ├── kvkk/  gizlilik-politikasi/  cerez-politikasi/
+│   └── layout.tsx  sitemap.ts  robots.ts
+├── components/                  # Header, Footer, MobileBottomNav, JsonLd, icons
+└── data/
+    ├── siteSettings.ts          # Clinic name, address, phones, WhatsApp, maps, SEO
+    ├── doctors.ts  treatments.ts  cases.ts  gallery.ts  socialMedia.ts
+public/
+└── brand/  images/  doctors/  cases/  manifest.json
+```
+
+## Getting started
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build
+npm run start
+npm run lint
+```
+
+No environment variables are required.
+
+## Content management
+
+| What | Where |
+| --- | --- |
+| Clinic info, phones, WhatsApp links, address, maps, SEO defaults | `src/data/siteSettings.ts` — changes apply to every contact block and the JSON-LD |
+| Dentists (name, title, bio, Instagram) — a profile page is generated per entry | `src/data/doctors.ts` |
+| Treatments and their WhatsApp message templates — a detail page is generated per entry | `src/data/treatments.ts` |
+| Before/after cases and disclaimer | `src/data/cases.ts` |
+| Clinic gallery | `src/data/gallery.ts` |
+
+**Images** live in `public/` — replace them with optimised WebP files at the same paths: hero (`images/atakule-hero.webp`, `images/atakule-hero-mobile.webp`), location (`images/atakule-location.webp`), clinic photos (`images/clinic-*.webp`), dentist portraits (`doctors/`) and case photos (`cases/`).
 
 ---
 
-## Kurulum ve Çalıştırma
+## Türkçe
 
-Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları uygulayın:
+Çankaya, Ankara'daki **Atakule Dent Ağız ve Diş Sağlığı Polikliniği** için koyu temalı, premium görünümlü, WhatsApp üzerinden randevu talebi alan web sitesi.
 
-1. **Bağımlılıkları Yükleyin:**
-   ```bash
-   npm install
-   ```
+> Müşteri projesi — Atakule Dent için Berke Coşkuner tarafından tasarlanıp geliştirilmiştir.
 
-2. **Geliştirme Sunucusunu Başlatın:**
-   ```bash
-   npm run dev
-   ```
-   Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresine giderek siteyi görüntüleyebilirsiniz.
+**Canlı:** https://atakuledent.com
 
-3. **Production Build Alın ve Test Edin:**
-   ```bash
-   npm run build
-   npm run start
-   ```
+### Özellikler
+
+- Ana sayfa: hero, güven şeridi, hakkımızda, hekimler, tedaviler, önce/sonra vaka önizlemesi (uyarı metniyle), "Neden Atakule Dent?", Google Harita ile konum ve Instagram bölümü
+- 12 tedavi için statik detay sayfaları ve her tedaviye özel WhatsApp mesaj şablonu
+- Hekim profil sayfaları, lightbox'lı klinik galerisi, önce/sonra vaka galerisi
+- İletişim: KVKK onaylı randevu formu — gönderildiğinde bilgiler hazır bir WhatsApp mesajına dönüştürülür
+- Mobil alt menü (tek dokunuşla arama ve WhatsApp randevu), KVKK / gizlilik / çerez sayfaları
+- SEO: `Dentist` JSON-LD, Open Graph, dinamik `sitemap.xml` ve `robots.txt`, web app manifest
+
+**Tasarım:** gece laciverti, şampanya altını ve klinik turkuazı renk paleti; 320 px genişliğe kadar test edilmiş responsive arayüz; WebP ve lazy load ile optimize görseller.
+
+### Teknolojiler
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Lucide ikonları.
+
+### Kurulum
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm run start
+```
+
+Ortam değişkeni gerekmez.
+
+### Veri güncelleme
+
+- Klinik bilgileri, telefon, WhatsApp, adres, harita ve SEO: `src/data/siteSettings.ts`
+- Hekimler: `src/data/doctors.ts` (her hekim için `/hekimlerimiz/[slug]` sayfası otomatik oluşur)
+- Tedaviler ve WhatsApp şablonları: `src/data/treatments.ts` (her tedavi için `/tedaviler/[slug]` sayfası otomatik oluşur)
+- Vakalar: `src/data/cases.ts` · Galeri: `src/data/gallery.ts`
+- Fotoğraflar: `public/images/`, `public/doctors/`, `public/cases/` altındaki dosyaları aynı adla, WebP formatında değiştirin.
 
 ---
 
-## Veri Güncelleme Rehberi
-
-Sitedeki tüm içerikler, bileşenlerin içinde dağınık yazılmak yerine `src/data/` klasöründeki merkezi TypeScript dosyalarından yönetilir.
-
-### 1. Klinik Bilgilerini ve İletişim Detaylarını Değiştirme
-Telefon numarası, adres, WhatsApp randevu linki gibi ayarları değiştirmek için:
-- Dosya: [siteSettings.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/siteSettings.ts)
-- Bu dosyada yer alan `siteSettings` objesini düzenlemeniz yeterlidir. Değişiklikler sitedeki tüm iletişim alanlarında ve SEO şemalarında anında güncellenir.
-
-### 2. Doktor Bilgisi Ekleme veya Düzenleme
-Hekim listesini, isimleri, biyografileri veya Instagram hesaplarını yönetmek için:
-- Dosya: [doctors.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/doctors.ts)
-- `doctors` dizisine yeni bir hekim objesi ekleyebilir ya da mevcut hekimleri düzenleyebilirsiniz. Her bir hekim için dinamik biyografi sayfası otomatik olarak oluşturulur (`/hekimlerimiz/[slug]`).
-
-### 3. Tedavi Ekleme veya Çıkarma
-Kliniğin sunduğu tedavileri ve bunlara tıklanıldığında açılacak WhatsApp mesaj şablonlarını yönetmek için:
-- Dosya: [treatments.ts](file:///c:/Users/berke/OneDrive/Masa%C3%BCst%C3%BC/dent2/src/data/treatments.ts)
-- `treatments` dizisine yeni bir tedavi ekleyebilir veya çıkarabilirsiniz. Tedaviye özel detay sayfaları otomatik olarak oluşturulur (`/tedaviler/[slug]`).
-
----
-
-## Fotoğrafları Değiştirme Rehberi
-
-Görseller `/public` klasöründe yer alır. Site performansını en üst düzeyde tutmak için görsellerinizi WebP formatında optimize ederek aşağıdaki yollarla değiştirin:
-
-- **Atakule Gece Manzaralı Hero Visual (Desktop):** `/public/images/atakule-hero.webp`
-- **Atakule Gece Manzaralı Hero Visual (Mobil):** `/public/images/atakule-hero-mobile.webp`
-- **Atakule Gündüz/Sunset Konum Görseli:** `/public/images/atakule-location.webp`
-- **Klinik Girişi:** `/public/images/clinic-exterior.webp`
-- **Bekleme Odası / Resepsiyon:** `/public/images/clinic-reception.webp`
-- **Tedavi Odası 01:** `/public/images/clinic-room-01.webp`
-- **Tedavi Odası 02 (Sterilizasyon):** `/public/images/clinic-room-02.webp`
-- **Dt. Özgür Önder Portresi:** `/public/doctors/ozgur-onder.webp`
-- **Dt. İrem Önder Portresi:** `/public/doctors/irem-onder.webp`
-- **Vaka Karşılaştırma Önce:** `/public/cases/case-01-before.webp`
-- **Vaka Karşılaştırma Sonra:** `/public/cases/case-01-after.webp`
+Built by [Berke Coşkuner](https://github.com/CoskunerBerke)
